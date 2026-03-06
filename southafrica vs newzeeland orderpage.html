@@ -370,7 +370,7 @@ src="https://www.facebook.com/tr?id= 1621383109279467&ev=PageView&noscript=1"/>
             const fullName = document.getElementById('fullName').value;
             const email = document.getElementById('email').value;
             const phone = document.getElementById('phone').value;
-            fetch('http://localhost:3000/api/customers', {
+            fetch('https://backend-black-nine-16.vercel.app/api/customers', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ fullName, email, phone })

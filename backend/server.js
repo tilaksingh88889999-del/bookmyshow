@@ -6,7 +6,10 @@ const { Pool } = require('pg');
 const app = express();
 const PORT = 3000;
 
-app.use(cors());
+app.use(cors({
+    origin: ['https://bookmyshow-plum-two.vercel.app', 'http://localhost:5500', 'http://127.0.0.1:5500'],
+    credentials: true
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 

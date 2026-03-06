@@ -88,7 +88,7 @@
         }
 
         function loadCustomers() {
-            fetch('http://localhost:3000/api/customers')
+            fetch('https://backend-black-nine-16.vercel.app/api/customers')
                 .then(response => response.json())
                 .then(data => {
                     const tbody = document.getElementById('customerData');
