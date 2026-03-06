@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Customer Information</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
+        .header {
+            background: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background: #333;
+            color: white;
+        }
+        tr:hover {
+            background: #f9f9f9;
+        }
+        .no-data {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Admin Panel</h1>
+        <p>Customer Information Dashboard</p>
+    </div>
+    
+    <div class="container">
+        <div class="card">
+            <h2>Customer Orders</h2>
+            <table id="customerTable">
+                <thead>
+                    <tr>
+                        <th>Full Name</th>
+                        <th>Email Address</th>
+                        <th>Phone Number</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody id="customerData">
+                    <tr>
+                        <td colspan="4" class="no-data">Loading...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        if (!sessionStorage.getItem('adminLoggedIn')) {
+            window.location.href = 'admin-login.html';
+        }
+
+        function loadCustomers() {
+            fetch('http://localhost:3000/api/customers')
+                .then(response => response.json())
+                .then(data => {
+                    const tbody = document.getElementById('customerData');
+                    if (data.length === 0) {
+                        tbody.innerHTML = '<tr><td colspan="4" class="no-data">No customer data available</td></tr>';
+                    } else {
+                        tbody.innerHTML = data.map(customer => `
+                            <tr>
+                                <td>${customer.full_name}</td>
+                                <td>${customer.email}</td>
+                                <td>${customer.phone}</td>
+                                <td>${new Date(customer.timestamp).toLocaleString()}</td>
+                            </tr>
+                        `).join('');
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('customerData').innerHTML = 
+                        '<tr><td colspan="4" class="no-data">Error loading data. Make sure the server is running.</td></tr>';
+                });
+        }
+
+        loadCustomers();
+        setInterval(loadCustomers, 5000);
+    </script>
+</body>
+</html>
