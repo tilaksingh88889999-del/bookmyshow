@@ -7,7 +7,7 @@ const app = express();
 const PORT = 3000;
 
 app.use(cors({
-    origin: ['https://bookmyshow-plum-two.vercel.app', 'https://bookmyshow.site', 'http://localhost:5500', 'http://127.0.0.1:5500'],
+    origin: ['https://bookmyshow-plum-two.vercel.app', 'https://bookmyshow.site', 'https://www.bookmyshow.site', 'http://localhost:5500', 'http://127.0.0.1:5500'],
     credentials: true
 }));
 app.use(bodyParser.json());
