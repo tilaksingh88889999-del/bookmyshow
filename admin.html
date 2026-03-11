@@ -30,7 +30,6 @@
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             padding: 20px;
-            margin-bottom: 20px;
         }
         table {
             width: 100%;
@@ -54,221 +53,38 @@
             padding: 40px;
             color: #666;
         }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #333;
-        }
-        input, textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 14px;
-        }
-        input:focus, textarea:focus {
-            outline: none;
-            border-color: #333;
-            box-shadow: 0 0 5px rgba(0,0,0,0.1);
-        }
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-        button {
-            background: #333;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-        button:hover {
-            background: #555;
-        }
-        .success-message {
-            background: #d4edda;
-            color: #155724;
-            padding: 12px;
-            border-radius: 4px;
-            margin-bottom: 15px;
-            display: none;
-        }
-        .error-message {
-            background: #f8d7da;
-            color: #721c24;
-            padding: 12px;
-            border-radius: 4px;
-            margin-bottom: 15px;
-            display: none;
-        }
-        .tabs {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #ddd;
-        }
-        .tab-button {
-            background: none;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            font-size: 16px;
-            color: #666;
-            border-bottom: 3px solid transparent;
-        }
-        .tab-button.active {
-            color: #333;
-            border-bottom-color: #333;
-        }
-        .tab-content {
-            display: none;
-        }
-        .tab-content.active {
-            display: block;
-        }
     </style>
 </head>
 <body>
     <div class="header">
         <h1>Admin Panel</h1>
-        <p>Manage Matches & Customer Information</p>
+        <p>Customer Information Dashboard</p>
     </div>
     
     <div class="container">
-        <div class="tabs">
-            <button class="tab-button active" onclick="switchTab('matches')">Manage Matches</button>
-            <button class="tab-button" onclick="switchTab('customers')">Customer Orders</button>
-        </div>
-
-        <!-- Matches Tab -->
-        <div id="matches" class="tab-content active">
-            <div class="card">
-                <h2>Add New Match</h2>
-                <div id="matchSuccessMsg" class="success-message"></div>
-                <div id="matchErrorMsg" class="error-message"></div>
-                <form id="matchForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="matchName">Match Name</label>
-                            <input type="text" id="matchName" placeholder="e.g., India vs England" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="team1">Team 1</label>
-                            <input type="text" id="team1" placeholder="e.g., India" required>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="team2">Team 2</label>
-                            <input type="text" id="team2" placeholder="e.g., England" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="matchDate">Date</label>
-                            <input type="text" id="matchDate" placeholder="e.g., 5th March 2026" required>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="matchTime">Time</label>
-                            <input type="text" id="matchTime" placeholder="e.g., 7:00PM IST" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="venue">Venue</label>
-                            <input type="text" id="venue" placeholder="e.g., Wankhede Stadium, Mumbai" required>
-                        </div>
-                    </div>
-                    <button type="submit">Add Match</button>
-                </form>
-            </div>
-
-            <div class="card">
-                <h2>All Matches</h2>
-                <table id="matchTable">
-                    <thead>
-                        <tr>
-                            <th>Match Name</th>
-                            <th>Team 1</th>
-                            <th>Team 2</th>
-                            <th>Date</th>
-                            <th>Time</th>
-                            <th>Venue</th>
-                        </tr>
-                    </thead>
-                    <tbody id="matchData">
-                        <tr>
-                            <td colspan="6" class="no-data">Loading...</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Customers Tab -->
-        <div id="customers" class="tab-content">
-            <div class="card">
-                <h2>Customer Orders</h2>
-                <table id="customerTable">
-                    <thead>
-                        <tr>
-                            <th>Full Name</th>
-                            <th>Email Address</th>
-                            <th>Phone Number</th>
-                            <th>Date</th>
-                        </tr>
-                    </thead>
-                    <tbody id="customerData">
-                        <tr>
-                            <td colspan="4" class="no-data">Loading...</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+        <div class="card">
+            <h2>Customer Orders</h2>
+            <table id="customerTable">
+                <thead>
+                    <tr>
+                        <th>Full Name</th>
+                        <th>Email Address</th>
+                        <th>Phone Number</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody id="customerData">
+                    <tr>
+                        <td colspan="4" class="no-data">Loading...</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 
     <script>
         if (!sessionStorage.getItem('adminLoggedIn')) {
             window.location.href = 'admin-login.html';
-        }
-
-        function switchTab(tabName) {
-            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
-            document.getElementById(tabName).classList.add('active');
-            event.target.classList.add('active');
-        }
-
-        function loadMatches() {
-            fetch('https://backend-black-nine-16.vercel.app/api/matches')
-                .then(response => response.json())
-                .then(data => {
-                    const tbody = document.getElementById('matchData');
-                    if (data.length === 0) {
-                        tbody.innerHTML = '<tr><td colspan="6" class="no-data">No matches added yet</td></tr>';
-                    } else {
-                        tbody.innerHTML = data.map(match => `
-                            <tr>
-                                <td>${match.match_name}</td>
-                                <td>${match.team1}</td>
-                                <td>${match.team2}</td>
-                                <td>${match.date}</td>
-                                <td>${match.time}</td>
-                                <td>${match.venue}</td>
-                            </tr>
-                        `).join('');
-                    }
-                })
-                .catch(error => {
-                    document.getElementById('matchData').innerHTML = 
-                        '<tr><td colspan="6" class="no-data">Error loading matches</td></tr>';
-                });
         }
 
         function loadCustomers() {
@@ -291,47 +107,11 @@
                 })
                 .catch(error => {
                     document.getElementById('customerData').innerHTML = 
-                        '<tr><td colspan="4" class="no-data">Error loading data</td></tr>';
+                        '<tr><td colspan="4" class="no-data">Error loading data. Make sure the server is running.</td></tr>';
                 });
         }
 
-        document.getElementById('matchForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const matchName = document.getElementById('matchName').value;
-            const team1 = document.getElementById('team1').value;
-            const team2 = document.getElementById('team2').value;
-            const date = document.getElementById('matchDate').value;
-            const time = document.getElementById('matchTime').value;
-            const venue = document.getElementById('venue').value;
-
-            fetch('https://backend-black-nine-16.vercel.app/api/matches', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ matchName, team1, team2, date, time, venue })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    document.getElementById('matchSuccessMsg').textContent = 'Match added successfully!';
-                    document.getElementById('matchSuccessMsg').style.display = 'block';
-                    document.getElementById('matchForm').reset();
-                    setTimeout(() => {
-                        document.getElementById('matchSuccessMsg').style.display = 'none';
-                    }, 3000);
-                    loadMatches();
-                } else {
-                    throw new Error('Failed to add match');
-                }
-            })
-            .catch(error => {
-                document.getElementById('matchErrorMsg').textContent = 'Error adding match: ' + error.message;
-                document.getElementById('matchErrorMsg').style.display = 'block';
-            });
-        });
-
-        loadMatches();
         loadCustomers();
-        setInterval(loadMatches, 5000);
         setInterval(loadCustomers, 5000);
     </script>
 </body>
